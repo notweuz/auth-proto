@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package auth;
+option go_package = "./pb";
+
+message AuthRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message AuthResponse {
+  string token = 1;
+  uint64 user_id = 2;
+}
+
+message ChangePasswordRequest {
+  uint64 user_id = 1;
+  string old_password = 2;
+  string new_password = 3;
+}
+
+message GetUserRequest {
+  uint64 user_id = 1;
+}
+
+message GetUserResponse {
+  uint64 id = 1;
+  string username = 2;
+  string created_at = 4;
+}
+
+service AuthService {
+  rpc Login          (AuthRequest)           returns (AuthResponse);
+  rpc Register       (AuthRequest)           returns (AuthResponse);
+  rpc ChangePassword (ChangePasswordRequest) returns (AuthResponse);
+  rpc GetUser        (GetUserRequest)        returns (GetUserResponse);
+}
