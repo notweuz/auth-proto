@@ -14,24 +14,12 @@ message AuthResponse {
 }
 
 message ChangePasswordRequest {
-  uint64 user_id = 1;
-  string old_password = 2;
-  string new_password = 3;
-}
-
-message ResolveUserRequest {
-  uint64 user_id = 1;
-}
-
-message ResolveUserResponse {
-  uint64 id = 1;
-  string username = 2;
-  string created_at = 3;
+  string old_password = 1;
+  string new_password = 2;
 }
 
 service AuthService {
   rpc Login          (AuthRequest)           returns (AuthResponse);
   rpc Register       (AuthRequest)           returns (AuthResponse);
   rpc ChangePassword (ChangePasswordRequest) returns (AuthResponse);
-  rpc ResolveUser    (ResolveUserRequest)    returns (ResolveUserResponse); // I actually think it should be moved to another service
 }

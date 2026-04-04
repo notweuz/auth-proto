@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package user;
+option go_package = "./pb";
+
+message GetUserRequest {
+  uint64 user_id = 1;
+}
+
+message GetUserResponse {
+  uint64 id = 1;
+  string username = 2;
+  string created_at = 3;
+}
+
+message ChangeUsernameRequest {
+  string new_username = 1;
+}
+
+service UserService {
+  rpc GetUser        (GetUserRequest)        returns (GetUserResponse);
+  rpc ChangeUsername (ChangeUsernameRequest) returns (GetUserResponse);
+}
