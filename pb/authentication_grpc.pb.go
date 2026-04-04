@@ -22,7 +22,7 @@ const (
 	AuthService_Login_FullMethodName          = "/auth.AuthService/Login"
 	AuthService_Register_FullMethodName       = "/auth.AuthService/Register"
 	AuthService_ChangePassword_FullMethodName = "/auth.AuthService/ChangePassword"
-	AuthService_GetUser_FullMethodName        = "/auth.AuthService/GetUser"
+	AuthService_ResolveUser_FullMethodName    = "/auth.AuthService/ResolveUser"
 )
 
 // AuthServiceClient is the client API for AuthService service.
@@ -32,7 +32,7 @@ type AuthServiceClient interface {
 	Login(ctx context.Context, in *AuthRequest, opts ...grpc.CallOption) (*AuthResponse, error)
 	Register(ctx context.Context, in *AuthRequest, opts ...grpc.CallOption) (*AuthResponse, error)
 	ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*AuthResponse, error)
-	GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponse, error)
+	ResolveUser(ctx context.Context, in *ResolveUserRequest, opts ...grpc.CallOption) (*ResolveUserResponse, error)
 }
 
 type authServiceClient struct {
@@ -73,10 +73,10 @@ func (c *authServiceClient) ChangePassword(ctx context.Context, in *ChangePasswo
 	return out, nil
 }
 
-func (c *authServiceClient) GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponse, error) {
+func (c *authServiceClient) ResolveUser(ctx context.Context, in *ResolveUserRequest, opts ...grpc.CallOption) (*ResolveUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetUserResponse)
-	err := c.cc.Invoke(ctx, AuthService_GetUser_FullMethodName, in, out, cOpts...)
+	out := new(ResolveUserResponse)
+	err := c.cc.Invoke(ctx, AuthService_ResolveUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -90,7 +90,7 @@ type AuthServiceServer interface {
 	Login(context.Context, *AuthRequest) (*AuthResponse, error)
 	Register(context.Context, *AuthRequest) (*AuthResponse, error)
 	ChangePassword(context.Context, *ChangePasswordRequest) (*AuthResponse, error)
-	GetUser(context.Context, *GetUserRequest) (*GetUserResponse, error)
+	ResolveUser(context.Context, *ResolveUserRequest) (*ResolveUserResponse, error)
 	mustEmbedUnimplementedAuthServiceServer()
 }
 
@@ -110,8 +110,8 @@ func (UnimplementedAuthServiceServer) Register(context.Context, *AuthRequest) (*
 func (UnimplementedAuthServiceServer) ChangePassword(context.Context, *ChangePasswordRequest) (*AuthResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ChangePassword not implemented")
 }
-func (UnimplementedAuthServiceServer) GetUser(context.Context, *GetUserRequest) (*GetUserResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetUser not implemented")
+func (UnimplementedAuthServiceServer) ResolveUser(context.Context, *ResolveUserRequest) (*ResolveUserResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ResolveUser not implemented")
 }
 func (UnimplementedAuthServiceServer) mustEmbedUnimplementedAuthServiceServer() {}
 func (UnimplementedAuthServiceServer) testEmbeddedByValue()                     {}
@@ -188,20 +188,20 @@ func _AuthService_ChangePassword_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AuthService_GetUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUserRequest)
+func _AuthService_ResolveUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResolveUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServiceServer).GetUser(ctx, in)
+		return srv.(AuthServiceServer).ResolveUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AuthService_GetUser_FullMethodName,
+		FullMethod: AuthService_ResolveUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).GetUser(ctx, req.(*GetUserRequest))
+		return srv.(AuthServiceServer).ResolveUser(ctx, req.(*ResolveUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -226,8 +226,8 @@ var AuthService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AuthService_ChangePassword_Handler,
 		},
 		{
-			MethodName: "GetUser",
-			Handler:    _AuthService_GetUser_Handler,
+			MethodName: "ResolveUser",
+			Handler:    _AuthService_ResolveUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

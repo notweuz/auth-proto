@@ -185,27 +185,27 @@ func (x *ChangePasswordRequest) GetNewPassword() string {
 	return ""
 }
 
-type GetUserRequest struct {
+type ResolveUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        uint64                 `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetUserRequest) Reset() {
-	*x = GetUserRequest{}
+func (x *ResolveUserRequest) Reset() {
+	*x = ResolveUserRequest{}
 	mi := &file_proto_authentication_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetUserRequest) String() string {
+func (x *ResolveUserRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetUserRequest) ProtoMessage() {}
+func (*ResolveUserRequest) ProtoMessage() {}
 
-func (x *GetUserRequest) ProtoReflect() protoreflect.Message {
+func (x *ResolveUserRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_authentication_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -217,41 +217,41 @@ func (x *GetUserRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetUserRequest.ProtoReflect.Descriptor instead.
-func (*GetUserRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use ResolveUserRequest.ProtoReflect.Descriptor instead.
+func (*ResolveUserRequest) Descriptor() ([]byte, []int) {
 	return file_proto_authentication_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *GetUserRequest) GetUserId() uint64 {
+func (x *ResolveUserRequest) GetUserId() uint64 {
 	if x != nil {
 		return x.UserId
 	}
 	return 0
 }
 
-type GetUserResponse struct {
+type ResolveUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Username      string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
-	CreatedAt     string                 `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	CreatedAt     string                 `protobuf:"bytes,3,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetUserResponse) Reset() {
-	*x = GetUserResponse{}
+func (x *ResolveUserResponse) Reset() {
+	*x = ResolveUserResponse{}
 	mi := &file_proto_authentication_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetUserResponse) String() string {
+func (x *ResolveUserResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetUserResponse) ProtoMessage() {}
+func (*ResolveUserResponse) ProtoMessage() {}
 
-func (x *GetUserResponse) ProtoReflect() protoreflect.Message {
+func (x *ResolveUserResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_authentication_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -263,26 +263,26 @@ func (x *GetUserResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetUserResponse.ProtoReflect.Descriptor instead.
-func (*GetUserResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ResolveUserResponse.ProtoReflect.Descriptor instead.
+func (*ResolveUserResponse) Descriptor() ([]byte, []int) {
 	return file_proto_authentication_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *GetUserResponse) GetId() uint64 {
+func (x *ResolveUserResponse) GetId() uint64 {
 	if x != nil {
 		return x.Id
 	}
 	return 0
 }
 
-func (x *GetUserResponse) GetUsername() string {
+func (x *ResolveUserResponse) GetUsername() string {
 	if x != nil {
 		return x.Username
 	}
 	return ""
 }
 
-func (x *GetUserResponse) GetCreatedAt() string {
+func (x *ResolveUserResponse) GetCreatedAt() string {
 	if x != nil {
 		return x.CreatedAt
 	}
@@ -303,19 +303,19 @@ const file_proto_authentication_proto_rawDesc = "" +
 	"\x15ChangePasswordRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x04R\x06userId\x12!\n" +
 	"\fold_password\x18\x02 \x01(\tR\voldPassword\x12!\n" +
-	"\fnew_password\x18\x03 \x01(\tR\vnewPassword\")\n" +
-	"\x0eGetUserRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x04R\x06userId\"\\\n" +
-	"\x0fGetUserResponse\x12\x0e\n" +
+	"\fnew_password\x18\x03 \x01(\tR\vnewPassword\"-\n" +
+	"\x12ResolveUserRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\x04R\x06userId\"`\n" +
+	"\x13ResolveUserResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x1a\n" +
 	"\busername\x18\x02 \x01(\tR\busername\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x04 \x01(\tR\tcreatedAt2\xeb\x01\n" +
+	"created_at\x18\x03 \x01(\tR\tcreatedAt2\xf7\x01\n" +
 	"\vAuthService\x12.\n" +
 	"\x05Login\x12\x11.auth.AuthRequest\x1a\x12.auth.AuthResponse\x121\n" +
 	"\bRegister\x12\x11.auth.AuthRequest\x1a\x12.auth.AuthResponse\x12A\n" +
-	"\x0eChangePassword\x12\x1b.auth.ChangePasswordRequest\x1a\x12.auth.AuthResponse\x126\n" +
-	"\aGetUser\x12\x14.auth.GetUserRequest\x1a\x15.auth.GetUserResponseB\x06Z\x04./pbb\x06proto3"
+	"\x0eChangePassword\x12\x1b.auth.ChangePasswordRequest\x1a\x12.auth.AuthResponse\x12B\n" +
+	"\vResolveUser\x12\x18.auth.ResolveUserRequest\x1a\x19.auth.ResolveUserResponseB\x06Z\x04./pbb\x06proto3"
 
 var (
 	file_proto_authentication_proto_rawDescOnce sync.Once
@@ -334,18 +334,18 @@ var file_proto_authentication_proto_goTypes = []any{
 	(*AuthRequest)(nil),           // 0: auth.AuthRequest
 	(*AuthResponse)(nil),          // 1: auth.AuthResponse
 	(*ChangePasswordRequest)(nil), // 2: auth.ChangePasswordRequest
-	(*GetUserRequest)(nil),        // 3: auth.GetUserRequest
-	(*GetUserResponse)(nil),       // 4: auth.GetUserResponse
+	(*ResolveUserRequest)(nil),    // 3: auth.ResolveUserRequest
+	(*ResolveUserResponse)(nil),   // 4: auth.ResolveUserResponse
 }
 var file_proto_authentication_proto_depIdxs = []int32{
 	0, // 0: auth.AuthService.Login:input_type -> auth.AuthRequest
 	0, // 1: auth.AuthService.Register:input_type -> auth.AuthRequest
 	2, // 2: auth.AuthService.ChangePassword:input_type -> auth.ChangePasswordRequest
-	3, // 3: auth.AuthService.GetUser:input_type -> auth.GetUserRequest
+	3, // 3: auth.AuthService.ResolveUser:input_type -> auth.ResolveUserRequest
 	1, // 4: auth.AuthService.Login:output_type -> auth.AuthResponse
 	1, // 5: auth.AuthService.Register:output_type -> auth.AuthResponse
 	1, // 6: auth.AuthService.ChangePassword:output_type -> auth.AuthResponse
-	4, // 7: auth.AuthService.GetUser:output_type -> auth.GetUserResponse
+	4, // 7: auth.AuthService.ResolveUser:output_type -> auth.ResolveUserResponse
 	4, // [4:8] is the sub-list for method output_type
 	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
