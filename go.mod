@@ -1,4 +1,4 @@
-module github.com/notweuz/authentication-proto
+module github.com/notweuz/auth-proto
 
 go 1.26.1
 
