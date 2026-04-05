@@ -18,8 +18,17 @@ message ChangePasswordRequest {
   string new_password = 2;
 }
 
+message ValidateTokenRequest {
+  string token = 1;
+}
+
+message ValidateTokenResponse {
+  bool is_valid = 1;
+}
+
 service AuthService {
   rpc Login          (AuthRequest)           returns (AuthResponse);
   rpc Register       (AuthRequest)           returns (AuthResponse);
   rpc ChangePassword (ChangePasswordRequest) returns (AuthResponse);
+  rpc ValidateToken  (ValidateTokenRequest)  returns (ValidateTokenResponse);
 }
